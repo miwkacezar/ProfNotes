@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="ellipse_58">#1C1C1C</color>
+    <color name="ellipse_51">#292929</color>
+    <color name="ellipse_52">#898989</color>
+    <color name="ellipse_53">#F1F1F1</color>
+    <color name="ellipse_57">#007AFF</color>
+    <color name="ellipse_56">#D13535</color>
+    <color name="ellipse_55">#FFE816</color>
+    <color name="ellipse_54">#FFFFFF</color>
+    <color name="ellipse_62">#00FF85</color>
+    <color name="ellipse_63">#3D3D3D</color>
+    <color name="ellipse_64">#949494</color>
+</resources>
