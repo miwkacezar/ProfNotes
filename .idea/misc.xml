@@ -3,16 +3,43 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ProfNotes/app/src/main/res/drawable/bg_bottom_bar.xml" value="0.201" />
+        <entry key="..\:/ProfNotes/app/src/main/res/drawable/bg_button.xml" value="0.1" />
+        <entry key="..\:/ProfNotes/app/src/main/res/drawable/bg_login_edit_text.xml" value="0.1" />
+        <entry key="..\:/ProfNotes/app/src/main/res/drawable/bg_new_note.xml" value="0.1" />
+        <entry key="..\:/ProfNotes/app/src/main/res/drawable/bg_rounded_card.xml" value="0.2045" />
+        <entry key="..\:/ProfNotes/app/src/main/res/drawable/bg_splash.xml" value="0.2035" />
+        <entry key="..\:/ProfNotes/app/src/main/res/drawable/edit_text_cursor.xml" value="0.1" />
+        <entry key="..\:/ProfNotes/app/src/main/res/drawable/ic_back.xml" value="0.1955" />
+        <entry key="..\:/ProfNotes/app/src/main/res/drawable/ic_calendar.xml" value="0.2035" />
         <entry key="..\:/ProfNotes/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1" />
+        <entry key="..\:/ProfNotes/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.2045" />
+        <entry key="..\:/ProfNotes/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2045" />
+        <entry key="..\:/ProfNotes/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2045" />
+        <entry key="..\:/ProfNotes/app/src/main/res/drawable/ic_notification.xml" value="0.2035" />
         <entry key="..\:/ProfNotes/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1" />
+        <entry key="..\:/ProfNotes/app/src/main/res/drawable/ic_search.xml" value="0.2035" />
+        <entry key="..\:/ProfNotes/app/src/main/res/drawable/ic_settings.xml" value="0.201" />
+        <entry key="..\:/ProfNotes/app/src/main/res/drawable/ic_time.xml" value="0.2035" />
         <entry key="..\:/ProfNotes/app/src/main/res/drawable/rounded_textview.xml" value="0.1" />
         <entry key="..\:/ProfNotes/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/ProfNotes/app/src/main/res/layout/activity_login2.xml" value="0.33" />
-        <entry key="..\:/ProfNotes/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/ProfNotes/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/ProfNotes/app/src/main/res/layout/activity_splash.xml" value="0.19583333333333333" />
         <entry key="..\:/ProfNotes/app/src/main/res/layout/activity_splash_screen.xml" value="0.196875" />
         <entry key="..\:/ProfNotes/app/src/main/res/layout/content_scrolling.xml" value="0.196875" />
         <entry key="..\:/ProfNotes/app/src/main/res/layout/fragment_dashboard.xml" value="0.196875" />
-        <entry key="..\:/ProfNotes/app/src/main/res/layout/fragment_home.xml" value="0.196875" />
+        <entry key="..\:/ProfNotes/app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/ProfNotes/app/src/main/res/layout/fragment_login.xml" value="0.33" />
+        <entry key="..\:/ProfNotes/app/src/main/res/layout/fragment_notifications.xml" value="0.196875" />
+        <entry key="..\:/ProfNotes/app/src/main/res/layout/fragment_regisry.xml" value="0.19583333333333333" />
+        <entry key="..\:/ProfNotes/app/src/main/res/layout/fragment_registry.xml" value="0.196875" />
+        <entry key="..\:/ProfNotes/app/src/main/res/layout/fragment_settings.xml" value="0.25" />
+        <entry key="..\:/ProfNotes/app/src/main/res/layout/item_new_note.xml" value="0.25" />
+        <entry key="..\:/ProfNotes/app/src/main/res/layout/item_note.xml" value="0.33" />
+        <entry key="..\:/ProfNotes/app/src/main/res/menu/bottom_nav_menu.xml" value="0.196875" />
+        <entry key="..\:/ProfNotes/app/src/main/res/menu/menu_login_activity2.xml" value="0.196875" />
+        <entry key="..\:/ProfNotes/app/src/main/res/menu/toolbar_menu.xml" value="0.19583333333333333" />
       </map>
     </option>
   </component>
