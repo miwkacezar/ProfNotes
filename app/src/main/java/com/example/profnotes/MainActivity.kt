@@ -2,65 +2,55 @@ package com.example.profnotes
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isGone
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.profnotes.core.gone
+import com.example.profnotes.core.visible
 import com.example.profnotes.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        Log.e("On Create", "Done")
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navView: BottomNavigationView = binding.navView
+        val toolbar = binding.toolbar
+
+        setSupportActionBar(toolbar)
+        val navView: BottomNavigationView = binding.bNavView
+
+        navView.gone()
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_home,
+                R.id.settingsFragment,
+                R.id.navigation_notifications
             )
         )
-  //      setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-    }
 
-    override fun onStart() {
-        super.onStart()
-        Log.e("OnStart", "Done")
 
     }
 
-    override fun onStop() {
-        super.onStop()
-        Log.e("OnStop", "Done")
+    fun showLoading(value: Boolean) {
+        binding.loadingLayout.isGone = !value
     }
 
-    override fun onPause() {
-        super.onPause()
-        Log.e("OnPause", "Done")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.e("OnResume", "Done")
-        Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.e("OnDestroy", "Done")
-    }
 }

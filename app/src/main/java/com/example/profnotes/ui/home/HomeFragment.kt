@@ -1,42 +1,93 @@
 package com.example.profnotes.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.profnotes.data.model.MyNote
+import com.example.profnotes.data.model.NewNote
+import com.example.profnotes.data.model.util.ResponseWrapper
 import com.example.profnotes.databinding.FragmentHomeBinding
+import com.example.profnotes.ui.core.BaseFragment
+import com.example.profnotes.ui.home.adapter.MyNotesAdapter
+import com.example.profnotes.ui.home.adapter.NewNotesAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
-class HomeFragment : Fragment() {
+@AndroidEntryPoint
+class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
-    private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
+    override fun inflateViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+    ) = FragmentHomeBinding.inflate(inflater, container, false)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+    override val viewModel by viewModels<HomeViewModel>()
+    private val viewPagerAdapter by lazy { NewNotesAdapter() }
+    private val myNotesAdapter by lazy { MyNotesAdapter() }
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+
+    override fun setupViews() {
+        lifecycleScope.launchWhenStarted {
+            viewModel.note.collect {
+                when (it) {
+                    is ResponseWrapper.Idle -> {}
+                    is ResponseWrapper.Error -> {
+                        Log.e("Error", "${it.code}")
+                    }
+                    is ResponseWrapper.Success -> {
+                        Log.e("Success", "${it.body}")
+                    }
+                }
+            }
         }
-        return root
+        viewModel.getNote()
+        setupPager()
+        setupMyNotes()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun setupPager() {
+        with(binding) {
+            viewPagerAdapter.setItems(listOf(
+                NewNote(
+                    id = 1,
+                    title = "Sample title",
+                    date = "today",
+                    description = "Start learning"
+                )
+            ))
+
+            vpNewNotes.adapter = viewPagerAdapter
+        }
     }
+
+
+    private fun setupMyNotes() {
+        with(binding) {
+            rvMyTasks.adapter = myNotesAdapter
+            rvMyTasks.layoutManager = object : LinearLayoutManager(requireContext()) {
+                override fun canScrollVertically() = false
+            }
+            myNotesAdapter.setItems(
+                listOf(
+                    MyNote(
+                        id = 1,
+                        title = "Test",
+                        date = "Today",
+                        status = "New",
+                        description = "Test"
+                    )
+                )
+            )
+        }
+    }
+
+
 }
