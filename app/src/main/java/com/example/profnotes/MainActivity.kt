@@ -8,6 +8,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         val navView: BottomNavigationView = binding.bNavView
 
-        navView.gone()
+        navView.visible()
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
@@ -44,7 +45,14 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_notifications
             )
         )
+        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        binding.fab.setOnClickListener{
+            navController.navigate(R.id.addNewNote)
+            navView.gone()
+        }
+
 
 
     }

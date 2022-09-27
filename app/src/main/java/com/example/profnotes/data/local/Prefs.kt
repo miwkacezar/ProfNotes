@@ -2,6 +2,8 @@ package com.example.profnotes.data.local
 
 import android.content.Context
 import androidx.core.content.edit
+import dagger.hilt.android.AndroidEntryPoint
+
 
 class Prefs(context: Context) {
     private  val authPrefs = context.getSharedPreferences(

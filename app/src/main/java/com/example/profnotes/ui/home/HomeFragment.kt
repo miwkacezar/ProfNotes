@@ -30,9 +30,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     ) = FragmentHomeBinding.inflate(inflater, container, false)
 
     override val viewModel by viewModels<HomeViewModel>()
+
     private val viewPagerAdapter by lazy { NewNotesAdapter() }
     private val myNotesAdapter by lazy { MyNotesAdapter() }
-
 
     override fun setupViews() {
         lifecycleScope.launchWhenStarted {
@@ -53,6 +53,25 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         setupMyNotes()
     }
 
+    private fun setupMyNotes() {
+        with(binding) {
+            rvMyTasks.adapter = myNotesAdapter
+            rvMyTasks.layoutManager = object : LinearLayoutManager(requireContext()) {
+                override fun canScrollVertically() = false
+            }
+
+            myNotesAdapter.setItems(listOf(
+                MyNote(
+                    id = 1,
+                    title = "Test",
+                    date = "Today",
+                    status = "New",
+                    description = "Test"
+                )
+            ))
+        }
+    }
+
     private fun setupPager() {
         with(binding) {
             viewPagerAdapter.setItems(listOf(
@@ -67,27 +86,4 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             vpNewNotes.adapter = viewPagerAdapter
         }
     }
-
-
-    private fun setupMyNotes() {
-        with(binding) {
-            rvMyTasks.adapter = myNotesAdapter
-            rvMyTasks.layoutManager = object : LinearLayoutManager(requireContext()) {
-                override fun canScrollVertically() = false
-            }
-            myNotesAdapter.setItems(
-                listOf(
-                    MyNote(
-                        id = 1,
-                        title = "Test",
-                        date = "Today",
-                        status = "New",
-                        description = "Test"
-                    )
-                )
-            )
-        }
-    }
-
-
 }

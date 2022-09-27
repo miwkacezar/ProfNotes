@@ -3,6 +3,7 @@ package com.example.profnotes.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.profnotes.data.local.Prefs
+import com.example.profnotes.data.model.Note
 import com.example.profnotes.data.model.NoteResponse
 import com.example.profnotes.data.model.util.ResponseWrapper
 import com.example.profnotes.data.repository.AuthRepository
@@ -19,7 +20,7 @@ class SplashViewModel @Inject constructor(
     private val noteRepository: NoteRepository
     ): ViewModel() {
 
-    private var _note = MutableStateFlow<ResponseWrapper<NoteResponse>>(ResponseWrapper.Idle())
+    private var _note = MutableStateFlow<ResponseWrapper<Note>>(ResponseWrapper.Idle())
     val note = _note.asStateFlow()
 
     fun getIsFirstEnter() = authRepository.getIsFirstEnter()

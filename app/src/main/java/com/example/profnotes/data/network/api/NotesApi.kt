@@ -10,7 +10,7 @@ interface NotesApi {
     @GET("notes")
     fun getNotes(): NoteResponse
 
-    @GET("todos/1")
+    @GET("todo3")
     suspend fun getNote(): Response<Note>
 
 }

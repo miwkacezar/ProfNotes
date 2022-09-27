@@ -13,7 +13,7 @@ abstract class BaseViewModel : ViewModel() {
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
 
-    private val _eventState = MutableStateFlow<Event>(Event.Idel)
+    private val _eventState = MutableStateFlow<Event>(Event.Idle)
     val eventState = _eventState.asStateFlow()
 
     @Suppress("unused")
@@ -29,11 +29,10 @@ abstract class BaseViewModel : ViewModel() {
         val errorHandler = CoroutineExceptionHandler { _, throwable ->
             errHandler?.invoke(throwable) ?: errHandler.apply {
                 _eventState.value = Event.Toast(throwable.message.toString())
-                _eventState.value = Event.Idel
-                Log.e("Error!", throwable.message.toString())
+                _eventState.value = Event.Idle
             }
         }
-        (viewModelScope+errorHandler).launch(Dispatchers.IO) {
+        (viewModelScope + errorHandler).launch(Dispatchers.IO) {
             block()
         }.invokeOnCompletion { _isLoading.value = false }
     }

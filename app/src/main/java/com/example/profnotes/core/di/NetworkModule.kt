@@ -2,7 +2,7 @@ package com.example.profnotes.core.di
 
 import androidx.navigation.Navigator
 import com.example.profnotes.BuildConfig
-import com.example.profnotes.data.network.NotesApi
+import com.example.profnotes.data.network.api.NotesApi
 import com.example.profnotes.data.network.api.RegisterApi
 import com.example.profnotes.data.network.interceptor.AuthenticationInterceptor
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -25,8 +25,9 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-    private const val AUTH_OKHTTP_CLIENT = "okHttpClient"
-    private const val WITHOUT_AUTH_OKHTTP_CLIENT = "okHttpClient"
+
+    private const val AUTH_OKHTTP_CLIENT = "authOkHttpClient"
+    private const val WITHOUT_AUTH_OKHTTP_CLIENT = "withoutAuthOkHttpClient"
 
     @Provides
     fun provideLogger() = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -34,7 +35,9 @@ object NetworkModule {
     @Named(AUTH_OKHTTP_CLIENT)
     @Provides
     @Singleton
-    fun provideAuthOkHttpClient(logger: HttpLoggingInterceptor) = OkHttpClient.Builder()
+    fun provideOkHttpClient(
+        logger: HttpLoggingInterceptor,
+    ) = OkHttpClient.Builder()
         .readTimeout(30, TimeUnit.SECONDS)
         .connectTimeout(30, TimeUnit.SECONDS)
         .addInterceptor(AuthenticationInterceptor())
@@ -44,10 +47,12 @@ object NetworkModule {
     @Named(WITHOUT_AUTH_OKHTTP_CLIENT)
     @Provides
     @Singleton
-    fun provideWithoutOkHttpClient(logger: HttpLoggingInterceptor) = OkHttpClient.Builder()
+    fun provideWithoutAuthOkHttpClient(
+        logger: HttpLoggingInterceptor,
+    ) = OkHttpClient.Builder()
         .readTimeout(30, TimeUnit.SECONDS)
         .connectTimeout(30, TimeUnit.SECONDS)
-        .addInterceptor(AuthenticationInterceptor())
+        .addInterceptor(logger)
         .build()
 
     @Provides
@@ -58,11 +63,10 @@ object NetworkModule {
     @Named(AUTH_OKHTTP_CLIENT)
     @Provides
     @Singleton
-    fun provideAutRetrofit(
-        @Named(AUTH_OKHTTP_CLIENT)
-        okHttpClient: OkHttpClient, moshi: Moshi
+    fun provideRetrofit(
+        @Named(AUTH_OKHTTP_CLIENT) okHttpClient: OkHttpClient,
+        moshi: Moshi,
     ) = Retrofit.Builder()
-
         .baseUrl(BuildConfig.BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create(moshi).asLenient())
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
@@ -72,11 +76,10 @@ object NetworkModule {
     @Named(WITHOUT_AUTH_OKHTTP_CLIENT)
     @Provides
     @Singleton
-    fun provideWithoutAutRetrofit(
-        @Named(WITHOUT_AUTH_OKHTTP_CLIENT)
-        okHttpClient: OkHttpClient, moshi: Moshi
+    fun provideWithoutAuthRetrofit(
+        @Named(WITHOUT_AUTH_OKHTTP_CLIENT) okHttpClient: OkHttpClient,
+        moshi: Moshi,
     ) = Retrofit.Builder()
-
         .baseUrl(BuildConfig.BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create(moshi).asLenient())
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
@@ -85,11 +88,12 @@ object NetworkModule {
 
     @Provides
     fun provideNotesApi(
-        @Named(AUTH_OKHTTP_CLIENT) retrofit: Retrofit
+        @Named(WITHOUT_AUTH_OKHTTP_CLIENT) retrofit: Retrofit,
     ) = retrofit.create(NotesApi::class.java)
 
     @Provides
-    fun registerNotesApi(
-        @Named(AUTH_OKHTTP_CLIENT) retrofit: Retrofit
+    fun provideRegisterApi(
+        @Named(WITHOUT_AUTH_OKHTTP_CLIENT) retrofit: Retrofit,
     ) = retrofit.create(RegisterApi::class.java)
+
 }

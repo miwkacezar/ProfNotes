@@ -69,7 +69,8 @@
             android:layout_height="wrap_content"
             android:text="@string/profile" />
 
-        <EditText
+
+        <TextView
             android:id="@+id/etChngInfo"
             style="@style/TextH3"
             android:layout_width="match_parent"
@@ -77,15 +78,13 @@
             android:layout_marginTop="10dp"
             android:autofillHints="username"
             android:background="@drawable/bg_login_edit_text"
-            android:hint="@string/changeInfo"
-            android:inputType="text"
+            android:text="@string/changeInfo"
             android:padding="12dp"
             android:textColor="@color/white"
-            android:textColorHint="@color/gray"
             android:textCursorDrawable="@drawable/edit_text_cursor"
             tools:ignore="TextFields" />
 
-        <EditText
+        <TextView
             android:id="@+id/etFindFriends"
             style="@style/TextH3"
             android:layout_width="match_parent"
@@ -93,11 +92,9 @@
             android:layout_marginTop="12dp"
             android:autofillHints="password"
             android:background="@drawable/bg_login_edit_text"
-            android:hint="@string/findeFriends"
-            android:inputType="text"
+            android:text="@string/findeFriends"
             android:padding="12dp"
-            android:textColor="@color/gray"
-            android:textColorHint="@color/gray"
+            android:textColor="@color/white"
             android:textCursorDrawable="@drawable/edit_text_cursor" />
 
         <TextView
@@ -106,7 +103,7 @@
             android:layout_height="wrap_content"
             android:text="@string/desine" />
 
-        <EditText
+        <TextView
             android:id="@+id/etChngColor"
             style="@style/TextH3"
             android:layout_width="match_parent"
@@ -114,8 +111,7 @@
             android:layout_marginTop="10dp"
             android:autofillHints="username"
             android:background="@drawable/bg_login_edit_text"
-            android:hint="@string/changeColor"
-            android:inputType="text"
+            android:text="@string/changeColor"
             android:padding="12dp"
             android:textColor="@color/white"
             android:textColorHint="@color/gray"
@@ -152,8 +148,6 @@
             android:textColor="@color/white"
             android:checked="true"
             tools:ignore="UseSwitchCompatOrMaterialXml" />
-
-
 
 
     </LinearLayout>

@@ -61,6 +61,16 @@
     <string name="notification">Уведомления</string>
     <string name="pushNotifi">Пуш-уведомления</string>
 
+    <!-- AddNewNote -->
+    <string name="newNote">Новая запись</string>
+    <string name="note">Заметка</string>
+    <string name="task">Задача</string>
+    <string name="createNote">Создать заметку</string>
+    <string name="noteName">Название заметки</string>
+    <string name="noteDesc">Описание заметки</string>
+    <string name="deadLine">Дата выполнения</string>
+    <string name="startInputText">Начните вводить текст здесь...</string>
+    <string name="Friends">Круг друзей</string>
 
     <string name="action_settings">Settings</string>
     <!-- TODO: Remove or change this placeholder text -->

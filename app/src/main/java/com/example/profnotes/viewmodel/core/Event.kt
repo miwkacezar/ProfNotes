@@ -1,7 +1,7 @@
 package com.example.profnotes.viewmodel.core
 
 sealed class Event{
-    object Idel: Event()
+    object Idle: Event()
 
     data class Toast(
         val message: String

@@ -18,7 +18,10 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val noteRepository: NoteRepository
 ) : BaseViewModel()  {
-    private var _note = MutableStateFlow<ResponseWrapper<NoteResponse>>(ResponseWrapper.Idle())
+
+    init{getNote()}
+
+    private var _note = MutableStateFlow<ResponseWrapper<Note>>(ResponseWrapper.Idle())
     val note = _note.asStateFlow()
 
     private val _text = MutableLiveData<String>().apply {

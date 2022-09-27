@@ -1,7 +1,7 @@
 package com.example.profnotes.data.repository.core
 
 import com.example.profnotes.data.model.util.ResponseWrapper
-import com.example.profnotes.data.network.NotesApi
+import com.example.profnotes.data.network.api.NotesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
